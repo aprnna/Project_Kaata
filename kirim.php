@@ -26,15 +26,28 @@
       </div>
     </div>
   </nav>
+  <?php 
+    include "koneksi.php";
+    $query = mysqli_query($koneksi, "SELECT max(id) as kodeTerbesar FROM kata");
+    $data = mysqli_fetch_array($query);
+    $kodeBarang = $data['kodeTerbesar'];
+    $urutan = $kodeBarang;
+    $urutan++;
+    ?>
   <div class="content container">
     <form action="" method="post">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">ID</span>
+        <input type="text" name="id" id="id" class="form-control" aria-describedby="basic-addon1" 
+        value="<?php echo $urutan ?>" readonly>
+      </div>
       <div class="mb-3">
         <label for="content" class="form-label h4">Content</label>
-        <textarea name="content" class="form-control" id="content" rows="5"></textarea>
+        <textarea require name="content" class="form-control" id="content" rows="5"></textarea>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Author</span>
-        <input type="text" name="author" id="author" class="form-control" aria-describedby="basic-addon1">
+        <input require type="text" name="author" id="author" class="form-control" aria-describedby="basic-addon1">
       </div>
       <div class="mb-3">
         <button class="btn btn-dark" name="kirim" type="submit">KIRIM</button>
@@ -44,6 +57,7 @@
     include "koneksi.php";
     if(isset($_POST['kirim'])){
       mysqli_query($koneksi,"insert into kata set
+      id='$_POST[id]',
       content_kata='$_POST[content]',
       author_kata='$_POST[author]'");
       
