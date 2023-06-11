@@ -1,5 +1,6 @@
 <?php
-$koneksi = mysqli_connect("localhost", "id20230782_sebuahkata","ASD213W@#s","id20230782_katakata");
+# $mysqli = new mysqli("localhost","username","password","nama_database");
+$koneksi = mysqli_connect("localhost", "root","","kata");
 if (mysqli_connect_errno()){
   echo "koneksi gagal" .mysqli_connect_errno(); 
 }
