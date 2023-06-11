@@ -31,7 +31,7 @@
     <?php
       include "koneksi.php";
       $no=1;
-      $ambildata = mysqli_query($koneksi,"select * from kata");
+      $ambildata = mysqli_query($koneksi,"select * from kata ORDER BY id DESC");
       while ($tampil = mysqli_fetch_array($ambildata)){
         echo"
         <figure data-aos='fade-right' class='content-item text-center p-4'>
