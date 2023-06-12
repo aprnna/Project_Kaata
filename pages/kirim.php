@@ -7,7 +7,7 @@
   <title>.Kata</title>
   <link rel="website icon" type="png" href="assets/Untitled-4.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 
 </head>
 <body>
@@ -19,7 +19,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="index.php">Home</a>
+          <a class="nav-link" href="../index.php">Home</a>
           <a class="nav-link active"  aria-current="page" href="#">Kirim Kata</a>
           <a class="nav-link" href="#about">About</a>
         </div>
@@ -27,7 +27,7 @@
     </div>
   </nav>
   <?php 
-    include "koneksi.php";
+    include "../koneksi.php";
     $query = mysqli_query($koneksi, "SELECT max(id) as kodeTerbesar FROM kata");
     $data = mysqli_fetch_array($query);
     $kodeBarang = $data['kodeTerbesar'];
@@ -35,7 +35,7 @@
     $urutan++;
     ?>
   <div class="content container">
-    <form action="" method="post">
+    <form action="proseskirim.php" method="post">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">ID</span>
         <input type="text" name="id" id="id" class="form-control" aria-describedby="basic-addon1" 
@@ -53,17 +53,6 @@
         <button class="btn btn-dark" name="kirim" type="submit">KIRIM</button>
       </div>
     </form>
-    <?php
-    include "koneksi.php";
-    if(isset($_POST['kirim'])){
-      mysqli_query($koneksi,"insert into kata set
-      id='$_POST[id]',
-      content_kata='$_POST[content]',
-      author_kata='$_POST[author]'");
-      
-      echo "Berhasil terkirim";
-    }
-    ?>
   </div>
   <footer class="bg-dark" id="about">
     <div class="row text-center">
@@ -72,8 +61,8 @@
         <p>Universitas Komputer Indonesia</p>
       </div>
       <div class="col-sm text-md-end">
-        <img class="img-fluid mx-2" style="width: 80px;" src="assets/unikom.png" alt="">
-        <img class="img-fluid mx-2" style="width: 80px;" src="assets/Untitled-4.png" alt="">
+        <img class="img-fluid mx-2" style="width: 80px;" src="../assets/unikom.png" alt="">
+        <img class="img-fluid mx-2" style="width: 80px;" src="../assets/Untitled-4.png" alt="">
       </div>
     </div>
   </footer>
