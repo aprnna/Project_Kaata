@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="kirim.php">Kirim Kata</a>
+          <a class="nav-link" href="pages/kirim.php">Kirim Kata</a>
           <a class="nav-link" href="#about">About</a>
         </div>
       </div>
@@ -32,21 +32,19 @@
       include "koneksi.php";
       $no=1;
       $ambildata = mysqli_query($koneksi,"select * from kata ORDER BY id DESC");
-      while ($tampil = mysqli_fetch_array($ambildata)){
-        echo"
+      while ($tampil = mysqli_fetch_array($ambildata)){?>
         <figure data-aos='fade-right' class='content-item text-center p-4'>
-        <blockquote class='blockquote'>
-          <p>
-            \"$tampil[content_kata]\"
-          </p>
-        </blockquote>
-        <figcaption class='blockquote-footer'>
-          $tampil[author_kata]
-        </figcaption>
-      </figure>";
-        $no++;
-      }
-    ?>
+          <blockquote class='blockquote'>
+            <p>
+              <?php echo $tampil['content_kata'] ?>
+            </p>
+          </blockquote>
+          <figcaption class='blockquote-footer'>
+            <?php echo $tampil['author_kata'] ?>
+          </figcaption>
+          <a onclick='return confirm("Yakin Akan Dihapus??")' href='proseshapus.php?id=<?php echo $tampil['id'] ?>'>Hapus</a>
+        </figure>
+      <?php } ?>
   </div>
   <footer class="bg-dark" id="about">
     <div class="row text-center">
